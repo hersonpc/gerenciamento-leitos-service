@@ -4,7 +4,7 @@
   "description": "Painel de Acompanhamento do Gerenciamento de Leitos Hospitalares",
   "main": "server.js",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "cors": "^2.8.5",
     "directory-tree": "^2.2.1",
     "express": "^4.16.4",
