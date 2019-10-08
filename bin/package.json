@@ -1,0 +1,23 @@
+{
+  "name": "glh",
+  "version": "0.0.1",
+  "description": "Painel de Acompanhamento do Gerenciamento de Leitos Hospitalares",
+  "main": "server.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cors": "^2.8.5",
+    "directory-tree": "^2.2.1",
+    "express": "^4.16.4",
+    "sweetalert2": "^8.14.0",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.8.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Herson Melo <hersonpc@gmail.com>",
+  "license": "ISC"
+}

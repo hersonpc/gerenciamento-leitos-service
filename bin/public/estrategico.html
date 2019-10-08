@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="author" content="HERSON MELO <hersonpc@gmail.com>">
+
+  <title>MONITORAMENTO ONLINE DE ENFERMAGEM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="shortcut icon" href="/enfermagem/favicon.ico" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="css/estrategico.css">
+
+  <script src="js/vue.js"></script>
+  <script src="js/axios.js"></script>
+</head>
+<body>
+  <div id="app" class="estrategico noselect">
+    <div class="loading" v-if="loading">
+        CARREGANDO
+    </div>
+    <div class="grid-container" v-else>
+        <div class="navbar cursor-pointer" @click="navOperacional()">Gerenciamento Tático Hospitalar - <span class="cor2">Scores de Enfermagem</span></div>
+        <div class="infobar font-bold">
+          <!-- <i class="fas fa-chevron-left cursor-pointer" @click.stop="prevPage()"></i> -->
+          {{ dataRef }}
+          <!-- <i class="fas fa-chevron-right cursor-pointer" @click.stop="nextPage()"></i> -->
+        </div>
+        
+        <div class="content">
+          <div class="unidade" v-for="(itens, unidadeInternacao, idx) in results">
+            <div class="descricao">
+              <p @click="navOperacional(idx)" class="cursor-pointer">{{ unidadeInternacao }}</p>
+              <div>Média Perm. <span class="pill">{{ calcPermanencia(itens) }} dias </span></div>
+              <div>Ocupação <span class="pill">{{ calcOcupacao(itens) }}%</span></div>
+            </div>
+            <div class="leitos">
+                <div class="leito" :class="leitoStyle(item)" v-for="item in itens" :title="item.DS_LEITO + ' ' + titulo(item)">
+                  <span class="desc">{{ item.DS_LEITO.replace("ENF", "").replace("UTI", "").replace("ZERO", "Z").replace("REANIMA", "R").replace("CAMA", "C").replace("LT", "").replace(" ", "").replace("-", "") }}</span>
+                  <span class="tempo" v-if="item.TEMPO_INTERNACAO > 0">{{ item.TEMPO_INTERNACAO }}d</span>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="footbar">
+            <div class="text-small">Fonte: Sistema MV, dados atualizados em {{ dataUpdate }}</div>
+        </div>
+    </div>
+  </div>
+  <script src="js/sweetalert2.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+
+
+
+
+
+

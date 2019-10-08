@@ -1,0 +1,401 @@
+// Google Fonts
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+// Fontawesome 5
+@import url(https://use.fontawesome.com/releases/v5.8.1/css/all.css);
+
+
+// Variables
+$cor_fundo_dark: #2e2e2e;
+$cor_fundo_destaque: #bd0f0f;
+$cor_bordas: #777777;
+$cor_bordas_light: #77777798;
+$cor_texto_claro: #f2f2f2;
+$cor_texto_destaque: #edca14;
+
+
+body {
+    font-family: "Montserrat";
+    padding: 0;
+    margin: 0;
+}
+
+.app {
+    padding: 0;
+}
+
+.noselect {
+-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome and Opera */
+}
+
+.container-app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 60px auto;
+    grid-template-areas: 
+        "header header"
+        "infobar infobar"
+        "main-content main-content"
+}
+
+.header {
+    grid-area: header;
+    min-height: 80px;
+    background-color: $cor_fundo_dark;
+    color: $cor_texto_claro;
+    font-size: 1.8rem;
+    padding: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.top-header {
+    display: block;
+    color: #fff;
+    font-size: 40%;
+    text-transform: uppercase;
+    font-weight: normal;
+    background: $cor_texto_destaque;
+    font-weight: lighter;
+    color: black;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #bd7d48;
+}
+
+.sub-header {
+    display: block;
+    color: $cor_texto_destaque;
+    font-size: 80%;
+    font-weight: normal;
+}
+
+.infobar {
+    grid-area: infobar;
+    color: $cor_texto_claro;
+    background-color: $cor_fundo_destaque;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+.main-content {
+    grid-area: main-content;
+    background-color: $cor_texto_claro; 
+    min-height: 50vh;
+    // padding: 2px;
+}
+
+.box-setores {
+    min-height: 10vh;
+    // margin: 5px;
+    // border: 1px solid $cor_bordas;
+    // border-radius: 5px;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px auto;
+    grid-template-areas: 
+        "setores-title"
+        "setores-content";
+}
+
+.box-setores-title {
+    grid-area: setores-title;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px 0;
+    background-color: $cor_fundo_dark;
+    color: $cor_texto_destaque;
+    font-size: 1.3rem;
+    position: relative;
+    // border-bottom: 2px solid $cor_bordas;
+}
+
+.box-setores-content {
+    grid-area: setores-content;
+    padding: 5px;
+
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.leito {
+    margin-bottom: 5px;
+    border: 2px solid $cor_bordas;
+    margin: 5px 2px;
+    border-radius: 5px;
+    // min-width: 300px;
+    
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+
+    .leito-title {
+        // border-bottom: 1px solid $cor_bordas;
+        border-right: 1px solid $cor_bordas;
+        padding: 1.5rem 0;
+        font-size: .9rem;
+        text-align: center;
+    }
+    
+    .leito-content {
+        padding: 5px;
+        font-size: .8rem;
+    
+        display: grid;
+        grid-template-columns: 2fr minmax(100px, 1fr);
+    
+        label {
+            grid-column: 1;
+            border-bottom: 1px solid $cor_bordas_light;
+            display: inline-block;
+            height: 20px !important;
+            padding: 0 5px;
+            margin: 1px 0;
+        }
+        
+        detail {
+            grid-column: 2;
+            border-bottom: 1px solid $cor_bordas_light;
+            display: inline-block;
+            height: 20px !important;
+            padding: 0 5px;
+            margin: 1px 0;
+        }
+    }
+}
+
+
+//   .leito-status-vazio {
+//     .leito-title {
+//         background: silver;
+//     }
+//     .leito-content {
+//         // grid-column: 1 / span 4;
+//         background: #fff;
+//         line-height: 110px;
+//         font-weight: bold;
+//         font-size: 1.3rem;
+//     }
+//   }
+
+//   .leito-status-pendente {
+//     .leito-title {
+//         background: #d99de6;
+//     }
+//     .leito-content {
+//         background: #e0c5e6;
+//     }
+//   }
+
+//   .leito-status-ok {
+//     .leito-title {
+//         background: #88cc90;
+//     }
+//     .leito-content {
+//         background: #88cc904d;
+//     }
+//   }
+  
+//   .leito-status-bloqueado {
+//     .leito-title {
+//         background: cadetblue;
+//     }
+//     .leito-content {
+//         background: #a9a9a1;
+//         line-height: 110px;
+//         font-weight: bold;
+//         font-size: 1.3rem;
+//     }
+//   }
+  
+.leito-status-vazio > .leito-title {
+    background: silver;
+  }
+  .leito-status-vazio > .leito-content {
+    font-weight: bold;
+    font-size: 1.5em;
+
+    text-align: center;
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    flex: 1;
+  }
+  
+  .leito-status-reservado > .leito-title {
+    background: #d7d89b;
+  }
+  .leito-status-reservado > .leito-content {
+    font-weight: bold;
+    font-size: 1.1em;
+
+    text-align: center;
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    flex: 1;
+  }
+  
+  .leito-status-precaucao > .leito-title {
+    background: #bf6363;
+  }
+  .leito-status-precaucao > .leito-content {
+    background: #e0aaaa;
+    padding-top: 40px;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  
+  .leito-status-manutencao > .leito-title {
+    background: #6eb5c5;
+  }
+  .leito-status-manutencao > .leito-content {
+    font-weight: bold;
+    font-size: 1.1em;
+
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    flex: 1;
+  }
+  
+  .leito-status-bloqueado > .leito-title {
+    background: cadetblue;
+  }
+  .leito-status-bloqueado > .leito-content {
+    background: #a9a9a1;
+    line-height: 110px;
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+  
+  .leito-status-ok > .leito-title {
+    background: #88cc90;
+  }
+  .leito-status-ok > .leito-content {
+    background: #88cc904d;
+  }
+  
+  .leito-status-pendente > .leito-title {
+    background: #d99de6;
+  }
+  .leito-status-pendente > .leito-content {
+    background: #e0c5e6;
+  }
+  
+
+  
+  .leito-status-alerta-mews {
+    /* animation: pulseMews 2s infinite; */
+    -webkit-box-shadow: -1px 3px 20px -1px rgba(248, 244, 0, 0.5);
+    -moz-box-shadow: -1px 3px 20px -1px rgba(248, 244, 0, 0.5);
+    box-shadow: -1px 3px 20px -1px rgba(248, 244, 0, 0.5);
+  }
+  .leito-status-alerta-mews > .leito-content > #MEWS {
+    animation: pulseMews 1s infinite;
+  }
+  .leito-status-alerta-mews > .leito-title {
+    color: #f81010;
+    border: 1px solid #f81010;
+
+    animation: pulseTextoMEWS .5s infinite;
+  }
+  .leito-status-alerta-mews > .leito-content {
+    /* background: peachpuff; */
+  }
+
+  .leito-status-alerta-mews > .leito-content > #MEWS {
+    animation: pulseMews 1s infinite;
+  }
+
+  @keyframes pulseTextoMEWS {
+    0% {
+      color: yellow;
+      border: 1px solid yellow;
+      -webkit-box-shadow: -1px 10px 100px -1px red;
+      -moz-box-shadow: -1px 10px 100px -1px red;
+      box-shadow: -1px 10px 100px -1px red;
+      }
+    50% {
+      color: #f81010;
+      border: 1px solid black;
+    }
+  }
+
+.altera-index {
+  color: limegreen !important;    
+  cursor: pointer;
+}
+
+.alinha-a-direita {
+    float: right;
+    margin-right: 20px;
+    animation: pulseSetas 2s infinite;
+}
+
+.alinha-a-esquerda {
+    float: left;
+    margin-left: 20px;
+    animation: pulseSetas 2s infinite;
+}
+
+@keyframes pulseSetas {
+    0%, 100% {
+      /* background-color: rgb(78, 78, 78); */
+      color: #edca14;
+    }
+    50% {
+      color: #bb7070;
+    }
+  }
+
+  .text-center {
+      text-align: center;
+  }
+
+  .sticky {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+.box-leitos-mini {
+    display: flex;
+    flex-wrap: wrap;
+    // flex-direction: column;
+    align-items: flex-start;
+    align-content: center;
+    justify-content: center;
+    
+    // background: #fff;
+    margin: 25px 0;
+    // border: 1px solid #b8b8b8;
+    // border-radius: 10px;
+    // padding: 15px;
+    // margin: 0 10px;
+    
+    .leito-mini {
+        background: white;
+        border: 1px solid black;
+        width: 90px;
+        border-radius: 2px;
+        text-align: center;
+        font-size: .9em;
+        margin: 5px;
+
+        .leito-title {
+            padding: 10px 2px;
+            cursor: pointer;
+        }
+    }
+}

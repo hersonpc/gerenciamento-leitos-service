@@ -1,0 +1,407 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url(https://use.fontawesome.com/releases/v5.8.1/css/all.css);
+body {
+  font-family: "Montserrat";
+  padding: 0;
+  margin: 0;
+}
+
+.app {
+  padding: 0;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                supported by Chrome and Opera */
+}
+
+.container-app {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: 1fr 60px auto;
+      grid-template-rows: 1fr 60px auto;
+      grid-template-areas: "header header" "infobar infobar" "main-content main-content";
+}
+
+.header {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: header;
+  min-height: 80px;
+  background-color: #2e2e2e;
+  color: #f2f2f2;
+  font-size: 1.8rem;
+  padding: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.top-header {
+  display: block;
+  color: #fff;
+  font-size: 40%;
+  text-transform: uppercase;
+  font-weight: normal;
+  background: #edca14;
+  font-weight: lighter;
+  color: black;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #bd7d48;
+}
+
+.sub-header {
+  display: block;
+  color: #edca14;
+  font-size: 80%;
+  font-weight: normal;
+}
+
+.infobar {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: infobar;
+  color: #f2f2f2;
+  background-color: #bd0f0f;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 10px 0;
+}
+
+.main-content {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: main-content;
+  background-color: #f2f2f2;
+  min-height: 50vh;
+}
+
+.box-setores {
+  min-height: 10vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: 60px auto;
+      grid-template-rows: 60px auto;
+      grid-template-areas: "setores-title" "setores-content";
+}
+
+.box-setores-title {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: setores-title;
+  font-weight: bold;
+  text-align: center;
+  padding: 15px 0;
+  background-color: #2e2e2e;
+  color: #edca14;
+  font-size: 1.3rem;
+  position: relative;
+}
+
+.box-setores-content {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: setores-content;
+  padding: 5px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+}
+
+.leito {
+  margin-bottom: 5px;
+  border: 2px solid #777777;
+  margin: 5px 2px;
+  border-radius: 5px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 3fr;
+      grid-template-columns: 1fr 3fr;
+}
+
+.leito .leito-title {
+  border-right: 1px solid #777777;
+  padding: 1.5rem 0;
+  font-size: .9rem;
+  text-align: center;
+}
+
+.leito .leito-content {
+  padding: 5px;
+  font-size: .8rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr minmax(100px, 1fr);
+      grid-template-columns: 2fr minmax(100px, 1fr);
+}
+
+.leito .leito-content label {
+  -ms-grid-column: 1;
+  grid-column: 1;
+  border-bottom: 1px solid #77777798;
+  display: inline-block;
+  height: 20px !important;
+  padding: 0 5px;
+  margin: 1px 0;
+}
+
+.leito .leito-content detail {
+  -ms-grid-column: 2;
+  grid-column: 2;
+  border-bottom: 1px solid #77777798;
+  display: inline-block;
+  height: 20px !important;
+  padding: 0 5px;
+  margin: 1px 0;
+}
+
+.leito-status-vazio > .leito-title {
+  background: silver;
+}
+
+.leito-status-vazio > .leito-content {
+  font-weight: bold;
+  font-size: 1.5em;
+  text-align: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+  justify-self: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.leito-status-reservado > .leito-title {
+  background: #d7d89b;
+}
+
+.leito-status-reservado > .leito-content {
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+  justify-self: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.leito-status-precaucao > .leito-title {
+  background: #bf6363;
+}
+
+.leito-status-precaucao > .leito-content {
+  background: #e0aaaa;
+  padding-top: 40px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.leito-status-manutencao > .leito-title {
+  background: #6eb5c5;
+}
+
+.leito-status-manutencao > .leito-content {
+  font-weight: bold;
+  font-size: 1.1em;
+  -ms-flex-item-align: center;
+      align-self: center;
+  justify-self: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.leito-status-bloqueado > .leito-title {
+  background: cadetblue;
+}
+
+.leito-status-bloqueado > .leito-content {
+  background: #a9a9a1;
+  line-height: 110px;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.leito-status-ok > .leito-title {
+  background: #88cc90;
+}
+
+.leito-status-ok > .leito-content {
+  background: #88cc904d;
+}
+
+.leito-status-pendente > .leito-title {
+  background: #d99de6;
+}
+
+.leito-status-pendente > .leito-content {
+  background: #e0c5e6;
+}
+
+.leito-status-alerta-mews {
+  /* animation: pulseMews 2s infinite; */
+  -webkit-box-shadow: -1px 3px 20px -1px rgba(248, 244, 0, 0.5);
+  box-shadow: -1px 3px 20px -1px rgba(248, 244, 0, 0.5);
+}
+
+.leito-status-alerta-mews > .leito-content > #MEWS {
+  -webkit-animation: pulseMews 1s infinite;
+          animation: pulseMews 1s infinite;
+}
+
+.leito-status-alerta-mews > .leito-title {
+  color: #f81010;
+  border: 1px solid #f81010;
+  -webkit-animation: pulseTextoMEWS .5s infinite;
+          animation: pulseTextoMEWS .5s infinite;
+}
+
+.leito-status-alerta-mews > .leito-content {
+  /* background: peachpuff; */
+}
+
+.leito-status-alerta-mews > .leito-content > #MEWS {
+  -webkit-animation: pulseMews 1s infinite;
+          animation: pulseMews 1s infinite;
+}
+
+@-webkit-keyframes pulseTextoMEWS {
+  0% {
+    color: yellow;
+    border: 1px solid yellow;
+    -webkit-box-shadow: -1px 10px 100px -1px red;
+    box-shadow: -1px 10px 100px -1px red;
+  }
+  50% {
+    color: #f81010;
+    border: 1px solid black;
+  }
+}
+
+@keyframes pulseTextoMEWS {
+  0% {
+    color: yellow;
+    border: 1px solid yellow;
+    -webkit-box-shadow: -1px 10px 100px -1px red;
+    box-shadow: -1px 10px 100px -1px red;
+  }
+  50% {
+    color: #f81010;
+    border: 1px solid black;
+  }
+}
+
+.altera-index {
+  color: limegreen !important;
+  cursor: pointer;
+}
+
+.alinha-a-direita {
+  float: right;
+  margin-right: 20px;
+  -webkit-animation: pulseSetas 2s infinite;
+          animation: pulseSetas 2s infinite;
+}
+
+.alinha-a-esquerda {
+  float: left;
+  margin-left: 20px;
+  -webkit-animation: pulseSetas 2s infinite;
+          animation: pulseSetas 2s infinite;
+}
+
+@-webkit-keyframes pulseSetas {
+  0%, 100% {
+    /* background-color: rgb(78, 78, 78); */
+    color: #edca14;
+  }
+  50% {
+    color: #bb7070;
+  }
+}
+
+@keyframes pulseSetas {
+  0%, 100% {
+    /* background-color: rgb(78, 78, 78); */
+    color: #edca14;
+  }
+  50% {
+    color: #bb7070;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  /* Safari */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.box-leitos-mini {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 25px 0;
+}
+
+.box-leitos-mini .leito-mini {
+  background: white;
+  border: 1px solid black;
+  width: 90px;
+  border-radius: 2px;
+  text-align: center;
+  font-size: .9em;
+  margin: 5px;
+}
+
+.box-leitos-mini .leito-mini .leito-title {
+  padding: 10px 2px;
+  cursor: pointer;
+}
+/*# sourceMappingURL=main.css.map */

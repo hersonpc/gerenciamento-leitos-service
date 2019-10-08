@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="author" content="HERSON MELO <hersonpc@gmail.com>">
+
+  <title>MONITORAMENTO ONLINE DE ENFERMAGEM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="shortcut icon" href="/enfermagem/favicon.ico" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="js/vue.js"></script>
+  <script src="js/axios.js"></script>
+
+  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> -->
+  <!-- <script src="https://unpkg.com/vue"></script> -->
+  <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+</head>
+<body>
+  <div id="app"class="noselect">
+    <div class="loading" v-if="loading">
+        CARREGANDO
+    </div>
+    <div class="grid-container" v-else>
+        <div class="navbar cursor-pointer" @click.stop="navEstrategico()">Gerenciamento Tático Hospitalar - <span class="cor2">Scores de Enfermagem</span></div>
+        <div class="infobar font-bold">
+          <!-- <i class="fas fa-chevron-left cursor-pointer" @click.stop="prevPage()"></i> -->
+          {{ dataRef }}
+          <!-- <i class="fas fa-chevron-right cursor-pointer" @click.stop="nextPage()"></i> -->
+        </div>
+        <div class="menubar" v-if="showMenubar">
+          <ul>
+            <li>TX. OCUPAÇÃO: 91%</li>
+            <li>TX. registros: 91%</li>
+          </ul>
+        </div>
+        <div class="content">
+          <div class="box-grupo-setores-internacao" v-for="(itens, unidadeInternacao, idx) in results" v-if="idx == showIndice">
+              <div class="box-setor-internacao">
+                  <div class="box-setor-internacao-titulo sub-colunas">
+                    <div class="flex-1">
+                      {{ unidadeInternacao }}
+                    </div>
+                    <div class="flex-1 text-center">
+                      <i class="fas fa-chevron-circle-left cursor-pointer" @click.stop="prevPage()"></i>
+                      SETOR
+                      <i class="fas fa-chevron-circle-right cursor-pointer" @click.stop="nextPage()"></i>
+                    </div>
+                    <div class="flex-1 align-end box-setor-internacao-titulo-computed">
+                      Média Perm. <span class="pill">{{ calcPermanencia(itens) }} dias </span>
+                      TX. Ocupação <span class="pill">{{ calcOcupacao(itens) }}%</span>
+                    </div>
+                  </div>
+                  <div class="box-setor-internacao-body">
+                      <div class="leito" :class="leitoStyle(item)" v-for="item in itens">
+                        <div class="leito-titulo"><i class="fas fa-bed"></i> {{ item.DS_LEITO }}</div>
+                        <div class="leito-conteudo">
+                            
+                            <slot v-if="(item.STATUS == 1)">
+                                VAGO
+                            </slot>
+
+                            <slot v-if="(item.STATUS == 2) && (item.TP_OCUPACAO == 'R')">
+                              RESERVADO<br><br>SISTEMA DE<br>REGULAÇÃO
+                            </slot>
+
+                            <slot v-if="(item.STATUS == 3) && (item.TP_OCUPACAO == 'C')">
+                              ISOLAMENTO<br>PRECAUÇÃO
+                            </slot>
+
+                            <slot v-if="(item.STATUS == 3) && (item.TP_OCUPACAO == 'M')">
+                              LEITO EM<br>MANUTENÇÃO
+                            </slot>
+
+                          <slot v-if="(item.STATUS == 2) && (item.TP_OCUPACAO != 'R')">
+                                <div class="pair-info" id="NESTE_LEITO">
+                                    <span class="pair-key">Neste leito:</span>
+                                    <span class="pair-value" v-if="item.TEMPO_ULT_MOV > 0">{{ item.TEMPO_ULT_MOV }} <small>dias</small></span>
+                                    <span class="pair-value" v-if="item.TEMPO_ULT_MOV <= 0">{{ item.HORAS_ULT_MOV }} <small>horas</small></span>
+                                  </div>  
+                                  <div id="INTERNADO" class="pair-info">
+                                    <span class="pair-key">Internado:</span>
+                                    <span class="pair-value">{{ item.TEMPO_INTERNACAO }} <small>dias</small></span>
+                                  </div>  
+                                
+                                  <div class="pair-info" v-for="(scoresObj, scoreName) in item.SCORES" :id="scoreName">
+                                      <span class="pair-key">{{ scoreName }}:</span>
+                                      <span class="pair-value">{{ getScore(scoreName, item) }}</span>
+                                  </div>  
+                            </slot>
+
+                            <slot v-if="(item.STATUS == 3) && (item.TP_OCUPACAO != 'M') && (item.TP_OCUPACAO != 'C')">
+                              INTERDITADO
+                            </slot>
+            
+                          </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="footbar">
+            <div class="text-small">Fonte: Sistema MV, dados atualizados em {{ dataUpdate }}</div>
+        </div>
+    </div>
+  </div>
+  <script src="js/sweetalert2.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
