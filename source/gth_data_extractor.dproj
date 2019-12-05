@@ -5,7 +5,7 @@
         <FrameworkType>None</FrameworkType>
         <MainSource>gth_data_extractor.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Linux64</Platform>
         <TargetedPlatforms>129</TargetedPlatforms>
         <AppType>Console</AppType>
@@ -73,6 +73,12 @@
     <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
         <Cfg_2>true</Cfg_2>
         <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Linux64' and '$(Cfg_2)'=='true') or '$(Cfg_2_Linux64)'!=''">
+        <Cfg_2_Linux64>true</Cfg_2_Linux64>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
@@ -161,6 +167,10 @@
         <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DCC_DebugInformation>0</DCC_DebugInformation>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Linux64)'!=''">
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
+        <VerInfo_Keys>CFBundleVersion=1.1.0</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">

@@ -353,7 +353,11 @@ object DM: TDM
       '        ,ANALISE_LEITOS."DATA_REF"'
       '        ,ANALISE_LEITOS."HORA_REF"'
       '        ,ANALISE_LEITOS."CD_UNID_INT"'
-      '        ,ANALISE_LEITOS."DS_UNID_INT"'
+      '--        ,ANALISE_LEITOS."DS_UNID_INT"'
+      
+        '        , CASE WHEN ANALISE_LEITOS.CD_LEITO = 341 THEN '#39'BIOSEGUR' +
+        'ANCA NIVEL IV'#39' ELSE ANALISE_LEITOS.DS_UNID_INT END AS DS_UNID_IN' +
+        'T'
       '        ,ANALISE_LEITOS."CD_LEITO"'
       '        ,ANALISE_LEITOS."DS_LEITO"'
       '        ,ANALISE_LEITOS."SN_MACA"'
@@ -501,7 +505,15 @@ object DM: TDM
         'NID_INT'
       '    )'
       '    SELECT '
-      '        LEITOS_ATIVOS.*'
+      '        LEITOS_ATIVOS.CD_FORMULA'
+      '        , LEITOS_ATIVOS.DS_FORMULA'
+      
+        '        , CASE WHEN LEITOS_ATIVOS.CD_LEITO = 341 THEN '#39'BIOSEGURA' +
+        'NCA NIVEL IV'#39' ELSE LEITOS_ATIVOS.DS_UNID_INT END AS DS_UNID_INT'
+      '        , LEITOS_ATIVOS.CD_LEITO'
+      '        , LEITOS_ATIVOS.DS_RESUMO'
+      '        , LEITOS_ATIVOS.STATUS_OCUPACAO'
+      ''
       '        , AVALIACOES.CD_ATENDIMENTO'
       '        , AVALIACOES.DH_AVALIACAO'
       '        , AVALIACOES.VL_RESULTADO'

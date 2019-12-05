@@ -34,6 +34,50 @@ body {
                                 supported by Chrome and Opera */
 }
 
+.text-bold {
+  font-weight: bold;
+}
+
+.text-danger {
+  color: #bd0f0f;
+}
+
+.text-secondary {
+  color: #11884b;
+}
+
+.text-xs {
+  font-size: .6em;
+}
+
+.text-sm {
+  font-size: .7em;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.text-black {
+  color: #000000;
+}
+
+.text-cor2 {
+  color: #a7a7a7;
+}
+
+.text-cor3 {
+  color: #707070;
+}
+
+.p-2 {
+  padding: 2px;
+}
+
+.mt-4 {
+  margin-top: 4px;
+}
+
 .container-app {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -73,7 +117,7 @@ body {
 .sub-header {
     display: block;
     color: $cor_texto_destaque;
-    font-size: 80%;
+    font-size: .7em;
     font-weight: normal;
 }
 
@@ -82,7 +126,7 @@ body {
     color: $cor_texto_claro;
     background-color: $cor_fundo_destaque;
     text-align: center;
-    font-size: 2rem;
+    font-size: 2.1em;
     font-weight: bold;
     padding: 10px 0;
 }
@@ -102,9 +146,10 @@ body {
 
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 60px auto;
+    grid-template-rows: 75px 1fr auto;
     grid-template-areas: 
         "setores-title"
+        "box-setores-sub-title"
         "setores-content";
 }
 
@@ -117,7 +162,16 @@ body {
     color: $cor_texto_destaque;
     font-size: 1.3rem;
     position: relative;
-    // border-bottom: 2px solid $cor_bordas;
+    //border-bottom: 2px solid $cor_bordas;
+}
+
+.box-setores-sub-title {
+  font-size: .7rem;
+  color: #afafaf;
+  // padding: 0 25px;
+  // border: 1px solid red;
+  margin-top: 5px;
+  text-align: center;
 }
 
 .box-setores-content {
@@ -174,51 +228,8 @@ body {
 }
 
 
-//   .leito-status-vazio {
-//     .leito-title {
-//         background: silver;
-//     }
-//     .leito-content {
-//         // grid-column: 1 / span 4;
-//         background: #fff;
-//         line-height: 110px;
-//         font-weight: bold;
-//         font-size: 1.3rem;
-//     }
-//   }
-
-//   .leito-status-pendente {
-//     .leito-title {
-//         background: #d99de6;
-//     }
-//     .leito-content {
-//         background: #e0c5e6;
-//     }
-//   }
-
-//   .leito-status-ok {
-//     .leito-title {
-//         background: #88cc90;
-//     }
-//     .leito-content {
-//         background: #88cc904d;
-//     }
-//   }
-  
-//   .leito-status-bloqueado {
-//     .leito-title {
-//         background: cadetblue;
-//     }
-//     .leito-content {
-//         background: #a9a9a1;
-//         line-height: 110px;
-//         font-weight: bold;
-//         font-size: 1.3rem;
-//     }
-//   }
-  
 .leito-status-vazio > .leito-title {
-    background: silver;
+    background: white;
   }
   .leito-status-vazio > .leito-content {
     font-weight: bold;
@@ -306,6 +317,7 @@ body {
   .leito-status-alerta-mews > .leito-title {
     color: #f81010;
     border: 1px solid #f81010;
+    font-size: .7em;
 
     animation: pulseTextoMEWS .5s infinite;
   }
@@ -320,14 +332,14 @@ body {
   @keyframes pulseTextoMEWS {
     0% {
       color: yellow;
-      border: 1px solid yellow;
+      border: 1px solid red;
       -webkit-box-shadow: -1px 10px 100px -1px red;
       -moz-box-shadow: -1px 10px 100px -1px red;
       box-shadow: -1px 10px 100px -1px red;
       }
     50% {
       color: #f81010;
-      border: 1px solid black;
+      border: 1px solid yellow;
     }
   }
 
@@ -398,4 +410,14 @@ body {
             cursor: pointer;
         }
     }
+}
+
+@keyframes pulseBorder {
+  0%, 100% {
+    /* background-color: rgb(78, 78, 78); */
+    border: 1px solid #000000;
+  }
+  50% {
+    border: 1px solid #501414;
+  }
 }

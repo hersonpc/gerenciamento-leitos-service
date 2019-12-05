@@ -11,7 +11,7 @@ uses
 
 begin
   try
-    Writeln('Gerenciamento Tático Hospitalar - Monitor de Leitos Hospitalares v0.0.2');
+    Writeln('Gerenciamento Tático Hospitalar - Monitor de Leitos Hospitalares v1.1.0');
     Writeln('By Herson Melo <hersonpc@gmail.com>');
     Writeln('=======================================================================');
     Writeln('');

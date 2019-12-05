@@ -25,6 +25,50 @@ body {
                                 supported by Chrome and Opera */
 }
 
+.text-bold {
+  font-weight: bold;
+}
+
+.text-danger {
+  color: #bd0f0f;
+}
+
+.text-secondary {
+  color: #11884b;
+}
+
+.text-xs {
+  font-size: .6em;
+}
+
+.text-sm {
+  font-size: .7em;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.text-black {
+  color: #000000;
+}
+
+.text-cor2 {
+  color: #a7a7a7;
+}
+
+.text-cor3 {
+  color: #707070;
+}
+
+.p-2 {
+  padding: 2px;
+}
+
+.mt-4 {
+  margin-top: 4px;
+}
+
 .container-app {
   display: -ms-grid;
   display: grid;
@@ -67,7 +111,7 @@ body {
 .sub-header {
   display: block;
   color: #edca14;
-  font-size: 80%;
+  font-size: .7em;
   font-weight: normal;
 }
 
@@ -79,7 +123,7 @@ body {
   color: #f2f2f2;
   background-color: #bd0f0f;
   text-align: center;
-  font-size: 2rem;
+  font-size: 2.1em;
   font-weight: bold;
   padding: 10px 0;
 }
@@ -99,9 +143,9 @@ body {
   display: grid;
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
-  -ms-grid-rows: 60px auto;
-      grid-template-rows: 60px auto;
-      grid-template-areas: "setores-title" "setores-content";
+  -ms-grid-rows: 75px 1fr auto;
+      grid-template-rows: 75px 1fr auto;
+      grid-template-areas: "setores-title" "box-setores-sub-title" "setores-content";
 }
 
 .box-setores-title {
@@ -117,8 +161,15 @@ body {
   position: relative;
 }
 
+.box-setores-sub-title {
+  font-size: .7rem;
+  color: #afafaf;
+  margin-top: 5px;
+  text-align: center;
+}
+
 .box-setores-content {
-  -ms-grid-row: 2;
+  -ms-grid-row: 3;
   -ms-grid-column: 1;
   grid-area: setores-content;
   padding: 5px;
@@ -176,7 +227,7 @@ body {
 }
 
 .leito-status-vazio > .leito-title {
-  background: silver;
+  background: white;
 }
 
 .leito-status-vazio > .leito-content {
@@ -283,6 +334,7 @@ body {
 .leito-status-alerta-mews > .leito-title {
   color: #f81010;
   border: 1px solid #f81010;
+  font-size: .7em;
   -webkit-animation: pulseTextoMEWS .5s infinite;
           animation: pulseTextoMEWS .5s infinite;
 }
@@ -299,26 +351,26 @@ body {
 @-webkit-keyframes pulseTextoMEWS {
   0% {
     color: yellow;
-    border: 1px solid yellow;
+    border: 1px solid red;
     -webkit-box-shadow: -1px 10px 100px -1px red;
     box-shadow: -1px 10px 100px -1px red;
   }
   50% {
     color: #f81010;
-    border: 1px solid black;
+    border: 1px solid yellow;
   }
 }
 
 @keyframes pulseTextoMEWS {
   0% {
     color: yellow;
-    border: 1px solid yellow;
+    border: 1px solid red;
     -webkit-box-shadow: -1px 10px 100px -1px red;
     box-shadow: -1px 10px 100px -1px red;
   }
   50% {
     color: #f81010;
-    border: 1px solid black;
+    border: 1px solid yellow;
   }
 }
 
@@ -403,5 +455,25 @@ body {
 .box-leitos-mini .leito-mini .leito-title {
   padding: 10px 2px;
   cursor: pointer;
+}
+
+@-webkit-keyframes pulseBorder {
+  0%, 100% {
+    /* background-color: rgb(78, 78, 78); */
+    border: 1px solid #000000;
+  }
+  50% {
+    border: 1px solid #501414;
+  }
+}
+
+@keyframes pulseBorder {
+  0%, 100% {
+    /* background-color: rgb(78, 78, 78); */
+    border: 1px solid #000000;
+  }
+  50% {
+    border: 1px solid #501414;
+  }
 }
 /*# sourceMappingURL=main.css.map */

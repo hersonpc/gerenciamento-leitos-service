@@ -22,159 +22,118 @@
     <!-- class="noselect" -->
   <div id="app">
 
-    <div class="container-app" v-if="!mobile_resumido">
-        <div class="header text-center">
-            Gerenciamento Tático Hospitalar
-            <span class="sub-header">Scores de Enfermagem</span>
-        </div>
-        <div class="infobar">{{ dataRef }}</div>
-        <div class="main-content">
-            <div class="box-setores" v-for="(itens, unidadeInternacao, idx) in results" v-if="idx == showIndice"> <!--  v-if="idx == showIndice" -->
-                <div class="box-setores-title">
-                  <i class="fas fa-chevron-left cursor-pointer altera-index alinha-a-esquerda" @click.stop="prevPage()"></i>
-                  {{ unidadeInternacao }}
-                  <i class="fas fa-chevron-right cursor-pointer altera-index alinha-a-direita" @click.stop="nextPage()"></i>
-                </div>
+    <div v-show="!loading" style="display: none">
 
-                <div class="box-setores-content">
-                    <div class="leito" :class="leitoStyle(item)" v-for="item in itens">
-                        <div class="leito-title"><i class="fas fa-2x fa-bed"></i><br><br> {{ item.DS_LEITO }}</div>
-                        <div class="leito-content">
-
-                          <slot v-if="(item.STATUS == 1)">
-                            VAGO
-                          </slot>
-
-                          <slot v-if="(item.STATUS == 2) && (item.TP_OCUPACAO == 'R')">
-                            RESERVADO<br><br>SISTEMA DE REGULAÇÃO
-                          </slot>
-
-                          <slot v-if="(item.STATUS == 3) && (item.TP_OCUPACAO == 'C')">
-                            ISOLAMENTO PRECAUÇÃO
-                          </slot>
-
-                          <slot v-if="(item.STATUS == 3) && (item.TP_OCUPACAO == 'M')">
-                            LEITO EM MANUTENÇÃO
-                          </slot>
-
-                          <slot v-if="(item.STATUS == 2) && (item.TP_OCUPACAO != 'R')">
-                            <label>Neste leito:</label>
-                            <detail>{{ item.TEMPO_ULT_MOV }} <small>dias</small></detail>
-                            <label>Internado:</label>
-                            <detail>{{ item.TEMPO_INTERNACAO }} <small>dias</small></detail>
-
-                            <slot v-for="(scoresObj, scoreName) in item.SCORES">
-                                <label>{{ scoreName }}:</label>
-                                <detail>{{ getScore(scoreName, item) }}</detail>
-                            </slot>  
-                          </slot>
-
-                          <slot v-if="(item.STATUS == 3) && (item.TP_OCUPACAO != 'M') && (item.TP_OCUPACAO != 'C')">
-                            INTERDITADO
-                          </slot>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container-app" v-if="mobile_resumido">
-        <div class="header text-center">
-            <div class="top-header" v-if="empresa_sigla == 'hdt'" @click.stop="empresa_sigla = 'ceapsol';navMobile()"><strong>{{ empresa_sigla }}</strong><br> Hospital Estadual de Doenças Tropicais</div>
-            <div class="top-header" v-if="empresa_sigla == 'ceapsol'" @click.stop="empresa_sigla = 'hdt';navMobile()"><strong>{{ empresa_sigla }}</strong><br> Centro Estadual de Atenção Prolongada e Casa de Apoio Condomínio Solidariedade</div>
-             Gerenciamento Tático Hospitalar
-            <span class="sub-header">Scores de Enfermagem</span>
-        </div>
-        <div class="infobar">{{ dataRef }}</div>
-        <div class="main-content" v-if="loading">
-          <br><br><br><br><br>
-          <h1 class="text-center">Buscando dados...</h1>
-        </div>
-        <div class="main-content" v-if="!loading">
-
-            <div class="box-setores" v-for="(itens, unidadeInternacao, idx) in results"> <!--  v-if="idx == showIndice" -->
-              <div class="box-setores-title sticky">
-                <!-- <i class="fas fa-chevron-left cursor-pointer altera-index alinha-a-esquerda" @click.stop="prevPage()"></i> -->
-                {{ unidadeInternacao }}
-                <!-- <i class="fas fa-chevron-right cursor-pointer altera-index alinha-a-direita" @click.stop="nextPage()"></i> -->
-              </div>
-
-
-              <div class="box-leitos-mini">
-                  <div class="leito-mini" :class="leitoStyle(item)" v-for="item in itens" @click.stop="info(item)">
-                    <div class="leito-title">
-                      <i class="fas fa-2x fa-bed"></i>
-                      <br> {{ item.DS_LEITO }}
-                    </div>
+      <div class="container-app" v-if="!mobile_resumido">
+          <div class="header text-center">
+            COMPLIANCE <br>
+              Gerenciamento Tático Hospitalar
+              <span class="sub-header">Scores de Enfermagem</span>
+          </div>
+          <div class="infobar">{{ dataRef }}</div>
+          <div class="main-content">
+              <div class="box-setores" v-for="(itens, unidadeInternacao, idx) in results" v-if="idx == showIndice"> <!--  v-if="idx == showIndice" -->
+                  <div class="box-setores-title">
+                    <i class="fas fa-chevron-left cursor-pointer altera-index alinha-a-esquerda" @click.stop="prevPage()"></i>
+                    {{ unidadeInternacao }}
+                    <i class="fas fa-chevron-right cursor-pointer altera-index alinha-a-direita" @click.stop="nextPage()"></i>
                   </div>
-                </div>
 
-            </div>
-
-        </div>
-      </div>
-    </div>
-
-
-    <!-- <div class="grid-container" v-else>
-        <div class="content">
-          <div class="box-grupo-setores-internacao" v-for="(itens, unidadeInternacao, idx) in results" v-if="idx == showIndice">
-              <div class="box-setor-internacao">
-                  <div class="box-setor-internacao-titulo sub-colunas">
-                    <div class="flex-1">
-                      {{ unidadeInternacao }}
-                    </div>
-                    <div class="flex-1 text-center">
-                      <i class="fas fa-chevron-circle-left cursor-pointer" @click.stop="prevPage()"></i>
-                      SETOR
-                      <i class="fas fa-chevron-circle-right cursor-pointer" @click.stop="nextPage()"></i>
-                    </div>
-                    <div class="flex-1 align-end box-setor-internacao-titulo-computed">
-                      Média Perm. <span class="pill">{{ calcPermanencia(itens) }} dias </span>
-                      TX. Ocupação <span class="pill">{{ calcOcupacao(itens) }}%</span>
-                    </div>
-                  </div>
-                  <div class="box-setor-internacao-body">
+                  <div class="box-setores-content">
                       <div class="leito" :class="leitoStyle(item)" v-for="item in itens">
-                        <div class="leito-titulo"><i class="fas fa-bed"></i> {{ item.DS_LEITO }}</div>
-                        <div class="leito-conteudo">
-                            
+                          <div class="leito-title">
+                            <i class="fas fa-2x fa-bed" v-if="(item.STATUS != 1)"></i>
+                            <i class="fas fa-2x fa-stethoscope" v-else></i>
+                            <br><br> {{ item.DS_LEITO }} - {{ item.STATUS }}</div>
+                          <div class="leito-content">
+
                             <slot v-if="(item.STATUS == 1)">
-                                VAGO
+                              VAGO
                             </slot>
 
-                            <slot v-if="(item.STATUS == 2)">
-                                <div class="pair-info" id="NESTE_LEITO">
-                                    <span class="pair-key">Neste leito:</span>
-                                    <span class="pair-value">{{ item.TEMPO_ULT_MOV }} <small>dias</small></span>
-                                  </div>  
-                                  <div class="pair-info">
-                                    <span class="pair-key">Internado:</span>
-                                    <span class="pair-value">{{ item.TEMPO_INTERNACAO }} <small>dias</small></span>
-                                  </div>  
-                                
-                                  <div class="pair-info" v-for="(scoresObj, scoreName) in item.SCORES" :id="scoreName">
-                                      <span class="pair-key">{{ scoreName }}:</span>
-                                      <span class="pair-value">{{ getScore(scoreName, item) }}</span>
-                                  </div>  
+                            <slot v-if="(item.STATUS == 2) && (item.TP_OCUPACAO == 'R')">
+                              RESERVADO<br><br>SISTEMA DE REGULAÇÃO
                             </slot>
 
-                            <slot v-if="(item.STATUS == 3)">
+                            <slot v-if="(item.STATUS == 3) && (item.TP_OCUPACAO == 'C')">
+                              ISOLAMENTO PRECAUÇÃO
+                            </slot>
+
+                            <slot v-if="(item.STATUS == 3) && (item.TP_OCUPACAO == 'M')">
+                              LEITO EM MANUTENÇÃO
+                            </slot>
+
+                            <slot v-if="(item.STATUS == 2) && (item.TP_OCUPACAO != 'R')">
+                              <label>Neste leito:</label>
+                              <detail>{{ item.TEMPO_ULT_MOV }} <small>dias</small></detail>
+                              <label>Internado:</label>
+                              <detail>{{ item.TEMPO_INTERNACAO }} <small>dias</small></detail>
+
+                              <slot v-for="(scoresObj, scoreName) in item.SCORES">
+                                  <label>{{ scoreName }}:</label>
+                                  <detail>{{ getScore(scoreName, item) }}</detail>
+                              </slot>  
+                            </slot>
+
+                            <slot v-if="(item.STATUS == 3) && (item.TP_OCUPACAO != 'M') && (item.TP_OCUPACAO != 'C')">
                               INTERDITADO
                             </slot>
-            
+
                           </div>
-                    </div>
+                      </div>
                   </div>
               </div>
           </div>
+      </div>
+
+      <div class="container-app" v-if="mobile_resumido">
+          <div class="header text-center">
+              <div class="top-header" v-if="empresa_sigla == 'hdt'" @click.stop="empresa_sigla = 'ceapsol';navMobile()"><strong>{{ empresa_sigla }}</strong><br> Hospital Estadual de Doenças Tropicais</div>
+              <div class="top-header" v-if="empresa_sigla == 'ceapsol'" @click.stop="empresa_sigla = 'hdt';navMobile()"><strong>{{ empresa_sigla }}</strong><br> Centro Estadual de Atenção Prolongada e Casa de Apoio Condomínio Solidariedade</div>
+              Compliance Enfermagem <hr>
+              <span class="sub-header">Gerenciamento Tático Hospitalar</span>
+          </div>
+          <div class="infobar">{{ dataRef }}</div>
+          <div class="main-content" v-if="loading">
+            <br><br><br><br><br>
+            <h1 class="text-center">Buscando dados...</h1>
+          </div>
+          <div class="main-content" v-if="!loading">
+
+              <div class="box-setores" v-for="(itens, unidadeInternacao, idx) in results">
+                <div class="box-setores-title sticky">
+                  {{ unidadeInternacao }}
+                  <div class="box-setores-sub-title">
+                      Vagos: <span class="text-white">{{ calcVagos(itens) }}</span>
+                      <span class="text-cor3">&nbsp;|&nbsp;</span>
+                      Ocupação: <span class="text-white">{{ calcOcupacao(itens) }}%</span>
+                      <span class="text-cor3">&nbsp;|&nbsp;</span>
+                       Méd. Perm. Agora: <span class="text-white">{{ calcPermanencia(itens) }} dias</span>
+                  </div>
+                </div>
+
+
+                <div class="box-leitos-mini">
+                    <div class="leito-mini" :class="leitoStyle(item)" v-for="item in itens" @click.stop="info(item)">
+                      <div class="leito-title">
+                        <i class="fas fa-2x fa-bed" v-if="(item.STATUS == 2)"></i>
+                        <i class="text-secondary fas fa-1x fa-user-md" v-if="(item.STATUS == 1)"></i>
+                        <i class="fas fa-2x fa-flag"  v-if="(item.STATUS == 3)"></i>
+
+                        <br> {{ item.DS_LEITO }}
+                        <div class="text-xs text-bold text-danger" v-if="(item.STATUS == 1)">LEITO VAGO</div>
+                        <div class="text-sm text-bold text-black" v-if="riscoMews(item)">ALERTA MEWS</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+              </div>
+
+          </div>
         </div>
-        <div class="footbar">
-            <div class="text-small">Fonte: Sistema MV, dados atualizados em {{ dataUpdate }}</div>
-        </div>
-    </div> -->
+      </div>
+
+    </div>
   </div>
 
   <script src="js/vue.js"></script>

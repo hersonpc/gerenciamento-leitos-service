@@ -9,6 +9,15 @@ Para construção da imagem no Docker, abaixo segue demostrado os modelos de com
 # Construindo a imagem no docker
 docker build -f Dockerfile -t hersonpc/gerenciamento-leitos:teste .
 
+docker build -f Dockerfile -t hersonpc/gerenciamento-leitos:1.2 .
+docker push hersonpc/gerenciamento-leitos:1.2
+
+# Parando e atualizando o servido no Swarm
+docker service rm compliance
+docker service create --name compliance --replicas 2 --publish 3000:3000 hersonpc/gerenciamento-leitos:1.2
+
+
+
 # Parando todas as instancias do docker
 docker rm --force $(docker container ls -a -q)
 ```
