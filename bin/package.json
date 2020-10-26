@@ -1,6 +1,6 @@
 {
   "name": "glh",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Painel de Acompanhamento do Gerenciamento de Leitos Hospitalares",
   "main": "server.js",
   "dependencies": {
