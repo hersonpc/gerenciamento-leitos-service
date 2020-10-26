@@ -1,7 +1,7 @@
 
 // const url = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH&tsyms=REAL,USD,EUR";
 //const url = "http://192.168.15.201:3000/data.json"
-const domain = "http://tecnologia.isgsaude.org/enfermagem/"
+const domain = "//tecnologia.isgsaude.org/enfermagem/"
 // const url_datafile = domain + "data_scores_enfermagem_hdt.json"
 // const url_getfiles = domain + "data-files.json"
 
