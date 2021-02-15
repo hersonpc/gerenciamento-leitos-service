@@ -10,12 +10,12 @@ Para construção da imagem no Docker, abaixo segue demostrado os modelos de com
 docker build -f Dockerfile -t hersonpc/gerenciamento-leitos:{versão} .
 ```
 
-### Construindo a imagem no docker
+### Construindo a imagem no docker localmente
 ```
 docker build -f Dockerfile -t hersonpc/gerenciamento-leitos:1.2.2 .
 ```
 
-### Emvoamdp a imagem para o DockerHub
+### Enviando a imagem criada localmente para o DockerHub
 ```
 docker push hersonpc/gerenciamento-leitos:1.2.2
 ```
