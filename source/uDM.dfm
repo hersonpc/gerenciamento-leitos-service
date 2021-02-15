@@ -567,7 +567,9 @@ object DM: TDM
         'LEITOS_ATIVOS.DS_FORMULA IN ('#39'FUGULIN'#39', '#39'BRADEN'#39', '#39'MORSE'#39', '#39'MEWS' +
         #39')) ) /* CEAP-SOL */'
       ''
-      '    ORDER BY LEITOS_ATIVOS.CD_LEITO, LEITOS_ATIVOS.DS_FORMULA')
+      
+        '    ORDER BY LEITOS_ATIVOS.CD_LEITO, LEITOS_ATIVOS.DS_FORMULA, A' +
+        'VALIACOES.DH_AVALIACAO DESC')
     FetchRows = 300
     ReadOnly = True
     Left = 235

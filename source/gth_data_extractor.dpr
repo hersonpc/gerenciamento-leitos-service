@@ -11,9 +11,9 @@ uses
 
 begin
   try
-    Writeln('Gerenciamento Tático Hospitalar - Monitor de Leitos Hospitalares v1.1.0');
+    Writeln('Gerenciamento Tático Hospitalar - Monitor de Leitos Hospitalares '+APP_VERSION);
     Writeln('By Herson Melo <hersonpc@gmail.com>');
-    Writeln('=======================================================================');
+    Writeln('==============================================================================');
     Writeln('');
     Writeln('Qdte parametros: ' + ParamCount.ToString);
     Writeln('  #0: ' + ParamStr(0));

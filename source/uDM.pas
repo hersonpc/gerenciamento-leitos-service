@@ -36,6 +36,9 @@ type
 var
   DM: TDM;
 
+const
+  APP_VERSION = 'v2021.02.15-A';
+
 implementation
 
 {%CLASSGROUP 'System.Classes.TPersistent'}
@@ -106,6 +109,8 @@ begin
   outputJson :=
     TGenJson.New
       .startObject // OBJETO GLOBAL
+      .pair('VERSION', APP_VERSION)
+      .addSeparator
       .pair('DATA_REF', FormatDateTime('DD/MM/YYYY', pData))
       .addSeparator
       .pair('DATA_ATUALIZACAO', FormatDateTime('DD/MM/YYYY HH:NN:SS', pData))
